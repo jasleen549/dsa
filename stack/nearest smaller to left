@@ -3,7 +3,7 @@
 #include <stack>
 #include <algorithm>
 using namespace std;
-vector<int> ngr(vector<int>arr)
+vector<int> nsl(vector<int>arr)
 {
     stack<int>s;
     vector<int>v;
