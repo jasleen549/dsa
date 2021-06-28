@@ -1,0 +1,58 @@
+//ROTATE ANTI CLOCKWISE 90 DEGREES
+#include <iostream>
+#include<vector>
+#include<algorithm>
+#include<cstdlib> 
+using namespace std;
+void transpose(vector<vector<int>>&mat)
+{
+    int r=mat.size();
+    int c=mat[0].size();
+    int i,j;
+    for (i=0;i<r;i++)
+    {
+        for (j=i+1;j<c;j++)
+        {
+           swap(mat[i][j],mat[j][i]);
+        }
+    }
+}
+void rotate(vector<vector<int>>&mat)
+{
+    int r=mat.size();
+    int c=mat[0].size();
+    int i,j;
+    transpose(mat);
+    //reverse individual columns
+    for (j=0;j<c;j++)
+    {
+        int high=c-1;
+        int low=0;
+        while(low<high)
+        {
+            swap(mat[low][j],mat[high][j]);
+            high--;
+            low++;
+        }
+    }
+    
+}
+int main()
+{
+    vector<vector<int>>mat{
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 9}
+    };
+    rotate(mat);
+    int r=3;int c=3;
+    for (int i=0;i<r;i++)
+    {
+        for (int j=0;j<c;j++)
+       {
+           cout<<mat[i][j]<< "  ";
+       }
+       cout<<endl;
+    }
+    return 0;
+}
