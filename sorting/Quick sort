@@ -1,12 +1,18 @@
 #include <iostream>
 #include<vector>
 #include<algorithm>
+#include<cstdlib> 
 using namespace std;
-int partition(vector<int>&arr,int start,int end)  
+int randomized(int start,int end)
 {
-    int pivot=arr[end];
+    return rand() % end + start;
+    
+}
+int partition(vector<int>&arr,int start,int end)
+{
+   int pivot=arr[end];
     int pindex=start;
-    for (int i=start;i<=end-1;i++)
+    for (int i=start;i<=end-1;i++)  
     {
         if (arr[i]<=pivot)
         {
@@ -17,16 +23,24 @@ int partition(vector<int>&arr,int start,int end)
     swap(arr[end],arr[pindex]);
     return pindex;
 }
+int randompartition(vector<int>&arr,int start,int end)
+{
+    int pindex=randomized(start,end);
+    cout<<pindex;
+    swap(arr[pindex],arr[end]);
+    partition(arr,start,end);
+}
 void quick_sort(vector<int>&arr,int start,int end)
 {
     if (start>=end)   
     {
         return;
     }
-    int pindex=partition(arr,start,end);
-    quick_sort(arr,start,pindex-1);
-    quick_sort(arr,pindex+1,end);
+    int pindex=partition(arr,start,end);  
+    quick_sort(arr,start,pindex-1);    
+    quick_sort(arr,pindex+1,end);                  
 }
+   
 int main()
 {
     vector<int>arr;
