@@ -1,0 +1,43 @@
+#include <iostream>
+#include<vector>
+#include<algorithm>
+#include<cstdlib> 
+#include<stack>
+#include<string>
+#include<unordered_set>
+using namespace std;
+void func(int ones ,int zeroes,int n,string op)
+{
+    
+    if (n==0)
+    {
+        cout<<op<<endl;
+        return;
+    }
+        string op1=op;
+        op1.push_back('1');
+        func(ones+1,zeroes,n-1,op1);
+    if (zeroes<ones)
+    {
+        string op1=op;
+        op1.push_back('0');
+        func(ones,zeroes+1,n-1,op1);
+    }
+}     
+int main()
+{
+    int n;
+    cin>>n;
+    int ones=0;
+    int zeroes =0;
+    string op="";
+    func(ones,zeroes,n,op);
+    /*n=5
+    10101=>(all prefixes having no of ones>=no of zeroes) 
+    10101
+    1010
+    101
+    10 
+    1*/
+    return 0;
+}
