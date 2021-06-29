@@ -1,0 +1,32 @@
+#include <iostream>
+#include<vector>
+#include<algorithm>
+#include<cstdlib> 
+#include<stack>
+#include<unordered_set>
+using namespace std;
+void permutation_with_spaces(string ip,string op)    
+{
+    if (ip.length()==0)
+    {
+        cout<<op<<endl;
+        return;
+    }
+    string op1=op;  
+    string op2=op;
+    op1.push_back(' '); 
+    op1.push_back(ip[0]); 
+    op2.push_back(ip[0]);   
+    ip.erase(ip.begin()+0); 
+    permutation_with_spaces(ip,op1);
+    permutation_with_spaces(ip,op2);
+}
+int main()
+{
+    string ip="ABC";
+    string op="";
+    op.push_back(ip[0]);
+    ip.erase(ip.begin()+0); 
+    permutation_with_spaces(ip,op);
+    return 0;
+}
