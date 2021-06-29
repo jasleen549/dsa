@@ -1,0 +1,33 @@
+#include <iostream>
+#include<vector>
+using namespace std;
+int main()
+{
+    int r,c;
+    cin>>r>>c;
+    int matrix[r][c];
+    for(int i = 0; i < r; ++i)
+       for(int j = 0; j < c; ++j)
+       {
+           cin >> matrix[i][j];
+       }
+       int ele;
+       cin>>ele;
+    int i=0;
+    int j=c-1;
+    while (i>=0 && i<r &&j>=0 && j<c)
+    {
+        if(matrix[i][j]==ele)
+        {
+            cout<<i<< " " <<j;
+            break;
+        }
+        else if (matrix[i][j]>ele)
+        {
+            j--;
+        }
+        else
+        i++;
+    }
+    return 0;
+}
