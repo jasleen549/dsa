@@ -1,0 +1,56 @@
+#include <iostream>
+#include<string>
+#include<unordered_map>
+using namespace std;
+int occ_anagram(string s,string ana)
+{
+    int ans=0;
+    int i=0;
+    int j=0;
+    int k=ana.length();
+    int size=s.length();
+    unordered_map<char,int>mp;
+    for (int i=0;i<ana.length();i++)
+    {
+        mp[ana[i]]++;
+    }
+    int count=mp.size();
+    while (j<size)
+    {
+        if (mp.find(s[j])!=mp.end())
+        {
+            mp[s[j]]--;
+        }
+        if (mp[s[j]]==0)
+        {
+            count--;
+        }
+        if (j-i+1<k)
+        j++;
+        else if(j-i+1==k)
+        {
+            if (count==0)
+            {
+                ans++;
+            }
+            if (mp.find(s[i])!=mp.end())
+            {
+                mp[s[i]]++;
+                if (mp[s[i]]==1)
+                {
+                    count++;
+                }
+            }
+        i++;
+        j++;
+        }
+    }
+    return ans;
+}
+int main()
+{
+    string s="aabaabaa";
+    string ana="aaba";
+    cout<<occ_anagram(s,ana);
+    return 0;
+}
