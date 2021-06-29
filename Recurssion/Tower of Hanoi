@@ -1,0 +1,25 @@
+#include <iostream>
+#include<vector>
+#include<algorithm>
+#include<cstdlib> 
+#include<stack>
+using namespace std;
+void TOH(int s,int d,int h,int n)
+{
+    if (n==1)
+    {
+        cout<<"move plate "<<n<<" from "<<s<<" to "<<d<<endl;
+        return;
+    }
+    TOH(s,h,d,n-1);
+    cout<<"move plate "<<n<<" from "<<s<<" to "<<d<<endl;
+    TOH(h,d,s,n-1);
+}
+int main()
+{
+    int n;
+    cin>>n;
+    int s=1,h=2,d=3;
+    TOH(s,d,h,n);
+    return 0;
+}
