@@ -1,0 +1,38 @@
+#include <iostream>
+#include<vector>
+#include<algorithm>
+#include<cstdlib> 
+#include<stack>
+#include<string>
+#include<unordered_set>
+using namespace std;
+void gen_parenthesis(int open,int close,int n,string op)
+{
+    if (open==0 && close==0)
+    {
+        cout<<op<<endl;
+        return;
+    }
+    if (open!=0)
+    {
+        string op1=op;
+        op1.push_back('(');
+        gen_parenthesis(open-1,close,n-1,op1);
+    }
+    if (close>open)
+    {
+        string op1=op;
+        op1.push_back(')');
+        gen_parenthesis(open,close-1,n-1,op1);
+    }
+}
+int main()
+{
+    int n;
+    cin>>n;
+    int close=n;
+    int open =n;
+    string op="";
+    gen_parenthesis(open,close,n+n,op);
+    return 0;
+}
