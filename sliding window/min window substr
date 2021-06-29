@@ -1,0 +1,54 @@
+#include <iostream>
+#include<string>
+#include<climits>
+#include<unordered_map>
+#include<algorithm>
+using namespace std;
+int min_window_substr(string s,string ptr)
+{
+    unordered_map<char,int>mp;
+    int i=0;
+    int start=0;
+    int j=0;
+    int size=s.length();
+    int ans=INT_MAX;
+    for (int i=0;i<ptr.length();i++)
+    {
+        mp[ptr[i]]++;
+    }
+    int count=mp.size();
+    while(j<size)
+    {
+        mp[s[j]]--;
+        if (mp[s[j]]==0)
+        count--;
+       if (count==0) {
+            while (count==0) {
+                if (ans>j-i+1) {
+                    ans=min(ans,j-i+1);
+                    start=i;
+                }
+                mp[s[i]]++;
+                if (mp[s[i]]>0)
+                    count++;
+                    
+                i++;
+            }
+        }
+        j++;
+    }
+    if (ans==INT_MAX)
+    return 0;
+    else
+    {
+    cout<< s.substr(start,ans)<<endl;
+    return ans;
+    }
+}
+int main()
+{
+    string s="totmtaptat";
+    string ptr="tta";
+    cout<<min_window_substr(s,ptr);
+    return 0;
+}
