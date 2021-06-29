@@ -1,0 +1,26 @@
+#include <iostream>
+#include<string>
+#include<climits>
+using namespace std;
+bool check_palindrome(string s)
+{
+    int start=0;
+    int end=s.length()-1;
+    while (start<=end)
+    {
+        if (s[start]!=s[end])
+        return false;
+        else
+        {
+            start++;
+            end--;
+        }
+    }
+    return true;
+}
+int main()
+{
+    string s="abaa";
+    cout<<check_palindrome(s);
+    return 0;
+}
