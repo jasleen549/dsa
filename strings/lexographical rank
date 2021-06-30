@@ -1,0 +1,51 @@
+#include <iostream>
+#include<string>
+#include<climits>
+#include<vector>
+#include<algorithm>
+using namespace std;
+int factorial (int n)
+{
+    if (n==0)
+    return 1;
+    int fact=1;
+    for (int i=1;i<=n;i++)
+    {
+        fact=fact*i;
+    }
+    return fact;
+}
+int lexographical_rank(string str)
+{
+    string s=str;
+    sort(s.begin(),s.end());
+    int index=0;
+    int ans=0;
+    vector<int>check(s.length());
+    for (int i=0;i<s.length();i++)
+    {
+        check[i]=0;
+    }
+    for(int i=0;i<str.length();i++)
+    {
+        if (check[i]==-1)
+        continue;
+        if (str[index]!=s[i])
+        {
+            ans+=factorial(s.length()-index-1);
+        }
+        else 
+        {
+            check[i]=-1;
+            index++;
+            i=-1;
+        }
+    }
+    return ans+1;
+}
+int main()
+{
+    string s="cba";
+   cout<< lexographical_rank(s);
+    return 0;
+}
