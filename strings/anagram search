@@ -1,0 +1,43 @@
+#include <iostream>
+#include<string>
+#include<climits>
+#include<vector>
+using namespace std;
+bool aresame(vector<int>ct,vector<int>cp)
+{
+    for (int i=0;i<ct.size();i++)
+    {
+        if (ct[i]!=cp[i])
+        return false;
+    }
+    return true;
+}
+bool anagram_search(string t,string ptr)
+{
+    if (ptr.length()>t.length())
+    return -1;
+   vector <int> ct(256);
+   vector <int> cp(256);
+   for (int i=0;i<ptr.length();i++)
+   {
+       ct[t[i]]++;
+       cp[ptr[i]]++;
+   }
+   for (int i=ptr.length();i<t.length();i++)
+   {
+       if (aresame(ct,cp))
+       {
+           return true;
+       }
+       ct[t[i]]++;
+       ct[t[i-ptr.length()]]--;
+   }
+   return false;
+}
+int main()
+{
+    string s1="forck";
+    string s2="roc";
+   cout<< anagram_search(s1,s2);
+    return 0;
+}
