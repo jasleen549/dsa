@@ -1,1 +1,46 @@
-
+#include <iostream>
+#include<climits>
+#include<vector>
+#include<algorithm>
+#include<queue>
+#include<unordered_map>
+//typedef ppi=pair<int,int>;
+using namespace std;
+int top_k_freq(vector<int>v,int k)
+{
+    unordered_map<int,int>mp;
+    for (int i=0;i<v.size();i++)
+    {
+        mp[v[i]]++;
+    }
+    priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>minh;
+    for (auto x:mp)
+    {
+        minh.push({x.second,x.first});
+        if (minh.size()>k)
+        {
+            minh.pop();
+        }
+    }
+    while (minh.size()>0)
+    {
+        cout<<minh.top().second;
+        minh.pop();
+    }
+}
+int main()
+{
+    vector<int>v;
+    int n;
+    int sum=0;
+    cin>>n;
+    int x;
+    for (int i=0;i<n;i++)
+    {
+        cin>>x;
+        v.push_back(x);
+    }
+    cin>>x;
+    top_k_freq(v,x);
+    return 0;
+}
