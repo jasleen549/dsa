@@ -1,0 +1,41 @@
+#include <iostream>
+#include<string>
+#include<climits>
+#include<vector>
+using namespace std;
+int leftmost_non_repeating_char(string s)
+{
+    int n=s.length();
+    int mn=INT_MAX;
+   vector<int>v(256);
+   for(int i=0;i<256;i++)
+   {
+       v[i]=-1;
+   }
+   for(int i=0;i<n;i++)
+   {
+       if (v[s[i]]==-1)
+       {
+           v[s[i]]=i;
+       }
+       else 
+       {
+           v[s[i]]=-2;
+       }
+   }
+   
+  for (int i=0;i<256;i++)
+  {
+      if (v[i]>0)
+      {
+          mn=min(mn,v[i]);
+      }
+  }
+  return mn;
+}
+int main()
+{
+    string s1="aabc";
+    cout<<leftmost_non_repeating_char(s1);
+    return 0;
+}
