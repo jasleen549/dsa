@@ -1,0 +1,21 @@
+#include <iostream>
+#include<string>
+#include<climits>
+#include<vector>
+using namespace std;
+int check_rotations(string s1,string s2)
+{
+    if (s1.length()!=s2.length())
+    return -1;
+    int found = (s1+s1).find(s2);
+    if (found != string::npos) {
+        return found ;
+    }
+}
+int main()
+{
+    string s1="abcd";
+    string s2="cdab";
+   cout<< check_rotations(s1,s2);
+    return 0;
+}
